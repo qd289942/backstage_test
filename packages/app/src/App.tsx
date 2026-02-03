@@ -42,6 +42,7 @@ import { githubAuthApiRef } from '@backstage/core-plugin-api';
 import { TechRadarPage } from '@backstage-community/plugin-tech-radar';
 import { HomepageCompositionRoot } from '@backstage/plugin-home';
 import { HomePage } from './components/home/HomePage';
+import { MyFrontendPluginPage } from '@internal/backstage-plugin-my-frontend-plugin';
 
 
 const app = createApp({
@@ -120,6 +121,7 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/notifications" element={<NotificationsPage />} />
+    <Route path="/my-frontend-plugin" element={<MyFrontendPluginPage />} />
   </FlatRoutes>
 );
 
