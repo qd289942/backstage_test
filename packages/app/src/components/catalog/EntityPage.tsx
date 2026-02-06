@@ -64,6 +64,9 @@ import {
   isGithubActionsAvailable,
 } from '@backstage-community/plugin-github-actions';
 
+// import my plugin
+import { MyFrontendPluginPage } from '@internal/backstage-plugin-my-frontend-plugin';
+
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -245,6 +248,11 @@ const websiteEntityPage = (
     >
       <EntityGithubActionsContent />
     </EntityLayout.Route>
+
+    <EntityLayout.Route path="/my-custom-actions" title="My Actions">
+      <MyFrontendPluginPage />
+    </EntityLayout.Route>
+
   </EntityLayout>
 );
 

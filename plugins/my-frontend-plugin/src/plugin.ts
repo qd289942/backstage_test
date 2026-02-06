@@ -16,7 +16,7 @@ export const MyFrontendPluginPage = myFrontendPluginPlugin.provide(
   createRoutableExtension({
     name: 'MyFrontendPluginPage',
     component: () =>
-      import('./components/ExampleComponent').then(m => m.ExampleComponent),
+      import('./components/EnhancedActionsComponent').then(m => m.EnhancedActionsComponent),
     mountPoint: rootRouteRef,
   }),
 );
