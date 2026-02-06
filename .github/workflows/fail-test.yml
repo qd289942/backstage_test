@@ -1,0 +1,8 @@
+name: Mock Failure Alert
+on: [workflow_dispatch]
+jobs:
+  fail_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Error Out
+        run: exit 1
