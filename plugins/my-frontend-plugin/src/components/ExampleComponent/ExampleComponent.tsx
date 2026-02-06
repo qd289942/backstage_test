@@ -22,7 +22,7 @@ export const ExampleComponent = () => (
       </ContentHeader>
       <Grid container spacing={3} direction="column">
         <Grid item>
-          <InfoCard title="Information card">
+          <InfoCard title="test card">
             <Typography variant="body1">
               All content should be wrapped in a card like this.
             </Typography>

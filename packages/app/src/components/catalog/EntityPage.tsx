@@ -58,6 +58,13 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
+// import github action plugin
+import {
+  EntityGithubActionsContent,
+  isGithubActionsAvailable,
+} from '@backstage-community/plugin-github-actions';
+
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -183,6 +190,14 @@ const serviceEntityPage = (
       </Grid>
     </EntityLayout.Route>
 
+    <EntityLayout.Route 
+      path="/github-actions" 
+      title="GitHub Actions" 
+      if={isGithubActionsAvailable}
+    >
+      <EntityGithubActionsContent />
+    </EntityLayout.Route>
+
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
@@ -221,6 +236,15 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+
+    
+    <EntityLayout.Route 
+      path="/github-actions" 
+      title="GitHub Actions" 
+      if={isGithubActionsAvailable}
+    >
+      <EntityGithubActionsContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -239,6 +263,15 @@ const defaultEntityPage = (
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
+    </EntityLayout.Route>
+
+    
+    <EntityLayout.Route 
+      path="/github-actions" 
+      title="GitHub Actions" 
+      if={isGithubActionsAvailable}
+    >
+      <EntityGithubActionsContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
