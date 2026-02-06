@@ -31,6 +31,10 @@ export const EnhancedActionsComponent = () => {
       repo,
     });
 
+    console.log('GitHub API raw data:', response);
+
+    console.log('retured data as WorkflowRun:', response.workflow_runs as unknown as WorkflowRun[]);
+
     return (response.workflow_runs as unknown as WorkflowRun[]);
   }, [owner, repo, api]);
 
