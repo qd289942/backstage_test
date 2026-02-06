@@ -1,0 +1,19 @@
+name: Test Backstage Integration
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World
+        run: echo "Backstage is watching this action!"
+      
+      - name: Mock Test Step
+        run: |
+          echo "Running unit tests..."
+          sleep 5
+          echo "Tests passed!"
