@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: vwn-plugin-github-actions-custom
+  title: VWN GitHub Actions Custom Plugin
+  description: |
+    Enhanced GitHub Actions integration for IDP Project. 
+    Includes custom internal deployment triggers and HIL status mapping.
+  tags:
+    - vwn-internal
+    - idp-custom
+  # annotations:
+  #   backstage.io/source-location: url:https://gitlab.vwn.vwg/your-team/plugin-github-actions-custom/
+  #   backstage.io/techdocs-ref: dir:.
+spec:
+  lifecycle: experimental
+  type: backstage-frontend-plugin
+  owner: qd289942

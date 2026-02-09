@@ -57,3 +57,9 @@ e2e-test-report/
 
 # Test
 *playground*
+
+# Container
+.devcontainer/
+
+# Git
+.github/

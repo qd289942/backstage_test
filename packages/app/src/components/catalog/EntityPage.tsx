@@ -59,14 +59,19 @@ import {
 } from '@backstage/plugin-kubernetes';
 
 // import github action plugin
-import {
-  EntityGithubActionsContent,
-  isGithubActionsAvailable,
-} from '@backstage-community/plugin-github-actions';
+// import {
+//   EntityGithubActionsContent,
+//   isGithubActionsAvailable,
+// } from '@backstage-community/plugin-github-actions';
 
 // import my plugin
 import { MyFrontendPluginPage } from '@internal/backstage-plugin-my-frontend-plugin';
 
+// import customized git actions plugin
+import { 
+  EntityGithubActionsContent as GithubActionsCustomPlugin,
+  isGithubActionsAvailable
+} from '@vwn-internal/plugin-github-actions-custom';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -198,7 +203,7 @@ const serviceEntityPage = (
       title="GitHub Actions" 
       if={isGithubActionsAvailable}
     >
-      <EntityGithubActionsContent />
+      <GithubActionsCustomPlugin />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
@@ -246,7 +251,7 @@ const websiteEntityPage = (
       title="GitHub Actions" 
       if={isGithubActionsAvailable}
     >
-      <EntityGithubActionsContent />
+      <GithubActionsCustomPlugin />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/my-custom-actions" title="My Actions">
@@ -279,7 +284,7 @@ const defaultEntityPage = (
       title="GitHub Actions" 
       if={isGithubActionsAvailable}
     >
-      <EntityGithubActionsContent />
+      <GithubActionsCustomPlugin />
     </EntityLayout.Route>
   </EntityLayout>
 );
