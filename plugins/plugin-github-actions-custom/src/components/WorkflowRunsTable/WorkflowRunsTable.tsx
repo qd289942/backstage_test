@@ -45,7 +45,7 @@ const truncateAtNewline = (str: string) => {
 };
 
 
-const generatedColumns: TableColumn<Partial<WorkflowRun>>[] = [
+const generatedColumns = (projectName: String, hostname: String): TableColumn<Partial<WorkflowRun>>[] => [
   {
     title: 'ID',
     field: 'id',
@@ -77,7 +77,7 @@ const generatedColumns: TableColumn<Partial<WorkflowRun>>[] = [
   {
     title: 'Branch',
     render: row => (
-      <Typography variant="body2" noWrap style={{ fontWeight: 'monospace' }}>
+      <Typography variant="body2" noWrap style={{ fontFamily: 'monospace' }}>
         {row.source?.branchName}
       </Typography>
     ),
@@ -88,14 +88,24 @@ const generatedColumns: TableColumn<Partial<WorkflowRun>>[] = [
       const hash = row.source?.commit.hash || '';
       const shortHash = hash.substring(0, 7);
 
-      // const githubHost = hostname || 'github.com';
-      // const commitUrl = `https://${githubHost}/${projectName}/commit/${hash}`;
+      const githubHost = hostname || 'github.com';
+      const commitUrl = `https://${githubHost}/${projectName}/commit/${hash}`;
 
       return (
-        <Tooltip title={hash}>
-          <Typography variant="body2" style={{ fontFamily: 'bold' }}>
+        <Tooltip title={`View commit: ${hash}`}>
+          <a
+            href={commitUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ 
+              color: '#3498db', 
+              textDecoration: 'none', 
+              fontWeight: 'bold', 
+              fontFamily: 'monospace' 
+            }}
+          >
             {shortHash}
-          </Typography>
+          </a>
         </Tooltip>
       );
     },
@@ -143,6 +153,7 @@ type Props = {
   retry: () => void;
   runs?: WorkflowRun[];
   projectName: string;
+  hostname: string;
   page: number;
   onChangePage: (page: number) => void;
   total: number;
@@ -152,6 +163,7 @@ type Props = {
 
 export const WorkflowRunsTableView = ({
   projectName,
+  hostname,
   loading,
   pageSize,
   page,
@@ -186,7 +198,7 @@ export const WorkflowRunsTableView = ({
           <Typography variant="h6">{projectName}</Typography>
         </Box>
       }
-      columns={generatedColumns}
+      columns={generatedColumns(projectName, hostname)}
     />
   );
 };
@@ -233,6 +245,8 @@ export const WorkflowRunsTable = ({
       {...tableProps}
       runs={runs}
       loading={tableProps.loading}
+      projectName={projectName ?? 'unknown/repository'}
+      hostname={hostname ?? 'github.com'}
       retry={retry}
       onChangePageSize={setPageSize}
       onChangePage={setPage}
