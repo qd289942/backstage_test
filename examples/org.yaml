@@ -22,4 +22,6 @@ kind: User
 metadata:
   name: qd289942
 spec:
+  profile:
+    displayName: Kuan
   memberOf: [guests]

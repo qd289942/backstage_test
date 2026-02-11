@@ -1,0 +1,30 @@
+services:
+  backstage:
+    image: backstage_v1.0
+    ports:
+      - "7007:7007"
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - GITHUB_CLIENTID=${GITHUB_CLIENTID}
+      - GITHUB_CLIENTSECRETS=${GITHUB_CLIENTSECRETS}
+      - GITITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+    volumes:
+      - ./my-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

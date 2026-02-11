@@ -61,5 +61,8 @@ e2e-test-report/
 # Container
 .devcontainer/
 
+# Local database
+my-db-data
+
 # Git
 .github/

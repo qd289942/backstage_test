@@ -98,7 +98,7 @@ const generatedColumns = (projectName: String, hostname: String): TableColumn<Pa
             target="_blank"
             rel="noopener noreferrer"
             style={{ 
-              color: '#3498db', 
+              color: '#34a9db', 
               textDecoration: 'none', 
               fontWeight: 'bold', 
               fontFamily: 'monospace' 
@@ -116,11 +116,12 @@ const generatedColumns = (projectName: String, hostname: String): TableColumn<Pa
   },
   {
     title: 'Status',
+    align: 'left',
     customSort: (d1, d2) => {
       return getStatusDescription(d1).localeCompare(getStatusDescription(d2));
     },
     render: row => (
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" justifyContent="left" alignItems="left">
         <WorkflowRunStatus status={row.status} conclusion={row.conclusion} />
       </Box>
     ),
@@ -128,7 +129,7 @@ const generatedColumns = (projectName: String, hostname: String): TableColumn<Pa
   {
     title: 'Age',
     render: row => (
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" justifyContent="left" alignItems="left">
         <Tooltip title={row.statusDate ?? ''}>
           <Box>{row.statusAge}</Box>
         </Tooltip>
@@ -137,6 +138,7 @@ const generatedColumns = (projectName: String, hostname: String): TableColumn<Pa
   },
   {
     title: 'Actions',
+    align: 'left',
     render: (row: Partial<WorkflowRun>) => (
       <Tooltip title="Rerun workflow">
         <IconButton onClick={row.onReRunClick}>
@@ -176,7 +178,11 @@ export const WorkflowRunsTableView = ({
   return (
     <Table
       isLoading={loading}
-      options={{ paging: true, pageSize, padding: 'dense' }}
+      options={{ paging: true, pageSize, 
+                 padding: 'dense',
+                 tableLayout: 'auto',
+                 fixedColumns: { left: 0, right: 0 }
+                }}
       totalCount={total}
       page={page}
       actions={[
